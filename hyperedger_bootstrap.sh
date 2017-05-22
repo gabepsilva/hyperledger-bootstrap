@@ -15,7 +15,7 @@ fi
 
 # Install some basic utilities and packages for SDK
 apt-get update -qq
-apt-get install -y build-essential git make curl unzip libtool apt-transport-https ca-certificates linux-image-extra-$(uname -r) openjdk-8-jdk maven gradle npm tcl tclx tcllib python-dev libyaml-dev python-setuptools python-pip aufs-tools libbz2-dev libffi-dev
+apt-get install -y build-essential git make curl unzip libtool apt-transport-https ca-certificates linux-image-extra-$(uname -r) openjdk-8-jdk maven gradle npm tcl tclx tcllib python-dev libyaml-dev python-setuptools python-pip aufs-tools libbz2-dev libffi-dev zlib1g-dev software-properties-common curl git sudo wget libssl-dev libltdl-dev btrfs-tools apparmor python-pytest
 
 
 
