@@ -75,11 +75,11 @@ GO_VER=1.8.1
 GO_URL=https://storage.googleapis.com/golang/go${GO_VER}.linux-amd64.tar.gz
 
 # Set Go environment variables needed by other scripts
-[ -z "$GOROOT" ] && GOROOT="/opt/gopath/"
-[ -z "$GOPATH" ] && GOPATH=$GOROOT/bin
+[ -z "$GOROOT" ] && export GOROOT="/opt/gopath"
+[ -z "$GOPATH" ] && export GOPATH=$GOROOT/bin
 mkdir -p $GOROOT
 
-PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin
 
 cat <<EOF >/etc/profile.d/goroot.sh
 export GOROOT=$GOROOT
@@ -88,7 +88,7 @@ export PATH=\$PATH:$GOROOT/bin
 EOF
 
 curl -sL $GO_URL | (cd $GOROOT && tar --strip-components 1 -xz)
-go version 
+/opt/gopath/bin/go version 
 
 
 # ----------------------------------------------------------------
