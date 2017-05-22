@@ -88,7 +88,7 @@ export PATH=\$PATH:$GOROOT/bin
 EOF
 
 curl -sL $GO_URL | (cd $GOROOT && tar --strip-components 1 -xz)
-/opt/gopath/bin/go version 
+$GOROOT/bin/go version 
 
 
 # ----------------------------------------------------------------
@@ -132,10 +132,10 @@ EOF
 # Set our shell prompt to something less ugly than the default from packer
 # Also make it so that it cd's the user to the fabric dir upon logging in
 cat <<EOF >> ~/.bashrc
-export FABRIC_SRC="$GOPATH/src/github.com/hyperledger/fabric/"
+export FABRIC_SRC="$GOROOT/src/github.com/hyperledger/fabric/"
 DEVENV_REVISION="cd \$FABRIC_SRC; git rev-parse --short HEAD 2> /dev/null"
 PS1="\u@hyperledger-devenv:\\\$(eval \$DEVENV_REVISION):\w$ "
-cd $GOPATH/src/github.com/hyperledger/fabric/
+cd $GOROOT/src/github.com/hyperledger/fabric/
 EOF
 
 # ----------------------------------------------------------------
