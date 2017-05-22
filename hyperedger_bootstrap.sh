@@ -109,7 +109,8 @@ node -v
 # ----------------------------------------------------------------
 FABRIC_SRC="$GOPATH/src/github.com/hyperledger/fabric/"
 mkdir -p $FABRIC_SRC
-git clone https://github.com/hyperledger/fabric.git $FABRIC_SRC
+#git clone https://github.com/hyperledger/fabric.git $FABRIC_SRC
+git clone	https://gerrit.hyperledger.org/r/p/fabric.git $FABRIC_SRC
 
 # ----------------------------------------------------------------
 # Misc tasks
