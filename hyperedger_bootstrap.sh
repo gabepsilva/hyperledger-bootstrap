@@ -8,15 +8,15 @@ set -x
 #force root
 if [ xroot != x$(whoami) ]
 then
-   echo "You must run as root (Hint: Try prefix 'sudo' while executing the script"
-   exit
+ echo "You must run as root (Hint: Try prefix 'sudo' while executing the script"
+ exit
 fi
 
 
 # Install some basic utilities and packages for SDK
 apt-get update -qq
 apt-get install -y build-essential git make curl unzip libtool apt-transport-https ca-certificates linux-image-extra-$(uname -r) openjdk-8-jdk maven gradle npm tcl tclx tcllib python-dev libyaml-dev python-setuptools python-pip aufs-tools libbz2-dev libffi-dev zlib1g-dev software-properties-common curl git sudo wget libssl-dev libltdl-dev btrfs-tools apparmor python-pytest
-
+apt-get install -y --no-install-recommends erlang-nox erlang-reltool haproxy libicu5. libmozjs185-1.0 openssl cmake apt-transport-https gcc g++ erlang-dev libcurl4-openssl-dev libicu-dev libmozjs185-dev make
 
 
 # ----------------------------------------------------------------
@@ -25,21 +25,21 @@ apt-get install -y build-essential git make curl unzip libtool apt-transport-htt
 
 # Storage backend logic
 case "${DOCKER_STORAGE_BACKEND}" in
-  aufs|AUFS|"")
-    DOCKER_STORAGE_BACKEND_STRING="aufs" ;;
-  btrfs|BTRFS)
-    # mkfs
-    apt-get install -y btrfs-tools
-    mkfs.btrfs -f /dev/sdb
-    rm -Rf /var/lib/docker
-    mkdir -p /var/lib/docker
-    . <(sudo blkid -o udev /dev/sdb)
-    echo "UUID=${ID_FS_UUID} /var/lib/docker btrfs defaults 0 0" >> /etc/fstab
-    mount /var/lib/docker
+ aufs|AUFS|"")
+ DOCKER_STORAGE_BACKEND_STRING="aufs" ;;
+ btrfs|BTRFS)
+ # mkfs
+ apt-get install -y btrfs-tools
+ mkfs.btrfs -f /dev/sdb
+ rm -Rf /var/lib/docker
+ mkdir -p /var/lib/docker
+ . <(sudo blkid -o udev /dev/sdb)
+ echo "UUID=${ID_FS_UUID} /var/lib/docker btrfs defaults 0 0" >> /etc/fstab
+ mount /var/lib/docker
 
-    DOCKER_STORAGE_BACKEND_STRING="btrfs" ;;
-  *) echo "Unknown storage backend ${DOCKER_STORAGE_BACKEND}"
-     exit 1;;
+ DOCKER_STORAGE_BACKEND_STRING="btrfs" ;;
+ *) echo "Unknown storage backend ${DOCKER_STORAGE_BACKEND}"
+ exit 1;;
 esac
 
 # Prep for docker install
