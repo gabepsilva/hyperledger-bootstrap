@@ -160,8 +160,6 @@ EOF
 # ----------------------------------------------------------------
 # Install Behave
 # ----------------------------------------------------------------
-
-pip install --upgrade pip
 pip install behave
 pip install nose
 
