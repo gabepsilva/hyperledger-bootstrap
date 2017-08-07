@@ -77,7 +77,7 @@ docker run --rm busybox && echo "Docker is good" || echo Docker not OK
 # ----------------------------------------------------------------
 # Install Golang
 # ----------------------------------------------------------------
-GO_VER=1.8.1
+GO_VER=1.8.3
 GO_URL=https://storage.googleapis.com/golang/go${GO_VER}.linux-amd64.tar.gz
 
 # Set Go environment variables needed by other scripts
@@ -100,7 +100,7 @@ $GOROOT/bin/go version
 # ----------------------------------------------------------------
 # Install NodeJS
 # ----------------------------------------------------------------
-NODE_VER=6.10.2
+NODE_VER=6.11.2
 NODE_URL=https://nodejs.org/dist/v$NODE_VER/node-v$NODE_VER-linux-x64.tar.gz
 
  echo $COLOR_GREEN Installing NodeJS $NODE_VER $COLOR_NC
