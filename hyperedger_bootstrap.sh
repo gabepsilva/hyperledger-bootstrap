@@ -18,6 +18,7 @@ apt-get update -qq
 apt-get install -y build-essential git make curl unzip libtool apt-transport-https ca-certificates linux-image-extra-$(uname -r) openjdk-8-jdk maven gradle npm tcl tclx tcllib python-dev libyaml-dev python-setuptools python-pip aufs-tools libbz2-dev libffi-dev zlib1g-dev software-properties-common curl git sudo wget libssl-dev libltdl-dev btrfs-tools apparmor python-pytest
 apt-get install -y --no-install-recommends erlang-nox erlang-reltool haproxy libicu5. libmozjs185-1.0 openssl cmake apt-transport-https gcc g++ erlang-dev libcurl4-openssl-dev libicu-dev libmozjs185-dev make
 
+pip install --upgrade pip
 
 # ----------------------------------------------------------------
 # Install Docker
@@ -41,6 +42,10 @@ case "${DOCKER_STORAGE_BACKEND}" in
  *) echo "Unknown storage backend ${DOCKER_STORAGE_BACKEND}"
  exit 1;;
 esac
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
 
 # Add docker repository
 sudo add-apt-repository \
