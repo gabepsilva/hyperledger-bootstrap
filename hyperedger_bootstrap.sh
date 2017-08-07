@@ -144,7 +144,7 @@ sudo cp $FABRIC_SRC/devenv/limits.conf /etc/security/limits.conf
 # Configure tools environment
 cat <<EOF >/etc/profile.d/tools-devenv.sh
 # Expose the devenv/tools in the $PATH
-export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SR/bin
+export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SRC/bin
 export CGO_CFLAGS=" "
 EOF
 
