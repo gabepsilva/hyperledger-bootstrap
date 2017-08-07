@@ -115,11 +115,16 @@ node -v
 # ----------------------------------------------------------------
 FABRIC_SRC="$GOROOT/src/github.com/hyperledger/fabric/"
 mkdir -p $FABRIC_SRC
+cd $FABRIC_SRC
 #git clone https://github.com/hyperledger/fabric.git $FABRIC_SRC
 git clone	https://gerrit.hyperledger.org/r/p/fabric.git $FABRIC_SRC
 
 #fix link
 ln -s /opt/gopath/src/ /opt/gopath/bin
+#download binaries - plataform specific
+#http://hyperledger-fabric.readthedocs.io/en/latest/samples.html
+curl -sSL https://goo.gl/iX9dek | bash
+cd -
 
 # ----------------------------------------------------------------
 # Misc tasks
@@ -134,7 +139,7 @@ sudo cp $FABRIC_SRC/devenv/limits.conf /etc/security/limits.conf
 # Configure tools environment
 cat <<EOF >/etc/profile.d/tools-devenv.sh
 # Expose the devenv/tools in the $PATH
-export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin
+export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SR/bin
 export CGO_CFLAGS=" "
 EOF
 
