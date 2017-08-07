@@ -124,6 +124,11 @@ ln -s /opt/gopath/src/ /opt/gopath/bin
 #download binaries - plataform specific
 #http://hyperledger-fabric.readthedocs.io/en/latest/samples.html
 curl -sSL https://goo.gl/iX9dek | bash
+
+#alternativatly you can compile after reboot
+#export TEST_PKGS="github.com/hyperledger/fabric/core/ledger/..."
+#http://hyperledger-fabric.readthedocs.io/en/latest/dev-setup/build.html
+#make unit-test
 cd -
 
 # ----------------------------------------------------------------
