@@ -8,10 +8,12 @@ set -x
 #force root
 if [ xroot != x$(whoami) ]
 then
- echo "You must run as root (Hint: Try prefix 'sudo' while executing the script"
+ echo "You must run as root"
  exit
 fi
 
+#git 2.9x
+add-apt-repository --yes ppa:git-core/ppa
 
 # Install some basic utilities and packages for SDK
 apt-get update -qq
