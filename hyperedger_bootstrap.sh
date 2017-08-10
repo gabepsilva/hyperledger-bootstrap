@@ -143,18 +143,14 @@ sudo mkdir -p /var/hyperledger
 # Update limits.conf to increase nofiles for LevelDB and network connections
 sudo cp $FABRIC_SRC/devenv/limits.conf /etc/security/limits.conf
 
-# Configure tools environment
-cat <<EOF >/etc/profile.d/tools-devenv.sh
-# Expose the devenv/tools in the $PATH
-export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SRC/bin
-export CGO_CFLAGS=" "
-export BROWSER="firefox" # hyperledger composer
-EOF
-
 # Set our shell prompt to something less ugly than the default from packer
 # Also make it so that it cd's the user to the fabric dir upon logging in
 cat <<EOF >> ~/.bashrc
 export FABRIC_SRC="$GOROOT/src/github.com/hyperledger/fabric/"
+export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SRC/bin
+export CGO_CFLAGS=" "
+export BROWSER="firefox" # hyperledger composer
+export FABRIC_VERSION=hlfv1
 DEVENV_REVISION="cd \$FABRIC_SRC; git rev-parse --short HEAD 2> /dev/null"
 PS1="\u@hyperledger-devenv:\\\$(eval \$DEVENV_REVISION):\w$ "
 cd $GOROOT/src/github.com/hyperledger/fabric/
