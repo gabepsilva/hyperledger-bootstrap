@@ -148,6 +148,7 @@ cat <<EOF >/etc/profile.d/tools-devenv.sh
 # Expose the devenv/tools in the $PATH
 export PATH=\$PATH:$FABRIC_SRC/devenv/tools:$FABRIC_SRC/build/bin:$FABRIC_SRC/bin
 export CGO_CFLAGS=" "
+export BROWSER="firefox" # hyperledger composer
 EOF
 
 # Set our shell prompt to something less ugly than the default from packer
