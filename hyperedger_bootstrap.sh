@@ -12,10 +12,20 @@ then
  exit
 fi
 
-#git 2.9x
+#Modern git
 add-apt-repository --yes ppa:git-core/ppa
 
-# Install some basic utilities and packages for SDK
+#Modern Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+
+# Install some basic utilities and 
 apt-get update -qq
 apt-get install -y build-essential git make curl unzip libtool apt-transport-https ca-certificates linux-image-extra-$(uname -r) openjdk-8-jdk maven gradle npm tcl tclx tcllib python-dev libyaml-dev python-setuptools python-pip aufs-tools libbz2-dev libffi-dev zlib1g-dev software-properties-common curl git sudo wget libssl-dev libltdl-dev btrfs-tools apparmor python-pytest
 apt-get install -y --no-install-recommends erlang-nox erlang-reltool haproxy libicu5. libmozjs185-1.0 openssl cmake apt-transport-https gcc g++ erlang-dev libcurl4-openssl-dev libicu-dev libmozjs185-dev make
@@ -46,25 +56,11 @@ case "${DOCKER_STORAGE_BACKEND}" in
 esac
 
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
 
-# Add docker repository
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-# Update system
-apt-get update -qq
-
-# Install docker
+#Install docker
 apt-get install -y -qq apparmor docker-ce
-
-#"Inslling docker-compose" 
+#docker compose
 pip install docker-compose
-#curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-#chmod +x /usr/local/bin/docker-compose
 
 # Configure docker
 DOCKER_OPTS="-s=${DOCKER_STORAGE_BACKEND_STRING} -r=true --api-cors-header='*' -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock ${DOCKER_OPTS}"
@@ -113,7 +109,7 @@ node -v
 
 
 # ----------------------------------------------------------------
-# Download Fabric
+# Download Hyperledget Fabric
 # ----------------------------------------------------------------
 FABRIC_SRC="$GOROOT/src/github.com/hyperledger/fabric/"
 mkdir -p $FABRIC_SRC
@@ -123,14 +119,11 @@ git clone	https://gerrit.hyperledger.org/r/p/fabric.git $FABRIC_SRC
 
 #fix link
 ln -s /opt/gopath/src/ /opt/gopath/bin
-#download binaries - plataform specific
-#http://hyperledger-fabric.readthedocs.io/en/latest/samples.html
+#download binaries - plataform specific http://hyperledger-fabric.readthedocs.io/en/latest/samples.html
 curl -sSL https://goo.gl/iX9dek | bash
 
-#alternativatly you can compile after reboot
-#export TEST_PKGS="github.com/hyperledger/fabric/core/ledger/..."
-#http://hyperledger-fabric.readthedocs.io/en/latest/dev-setup/build.html
-#make unit-test
+#alternativatly you can compile after reboot http://hyperledger-fabric.readthedocs.io/en/latest/dev-setup/build.html
+
 cd -
 
 # ----------------------------------------------------------------
