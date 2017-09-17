@@ -34,8 +34,14 @@ add-apt-repository \
    
 apt-get update
 
+sudo apt-get install -y docker-ce
 
-sudo apt-get install docker-ce
+apt-get install -y python-pip
+pip install --upgrade pip
+
+pip install docker-compose
 
 docker run hello-world
+docker-compose -version
+
 
