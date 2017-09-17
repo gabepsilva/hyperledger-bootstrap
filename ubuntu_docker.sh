@@ -1,14 +1,15 @@
 #!/bin/bash
 
-set -e
-set -x
-
 #force root
 if [ xroot != x$(whoami) ]
 then
  echo "You must run as root"
  exit
 fi
+
+set -e
+set -x
+
 
 apt-get update
 
