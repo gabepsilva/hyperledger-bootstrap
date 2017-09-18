@@ -15,5 +15,14 @@ cd $GOPATH/src/github.com/hyperledger
 
 git clone	https://gerrit.hyperledger.org/r/p/fabric.git
 
+#get samples
 cd fabric 
+git clone https://github.com/hyperledger/fabric-samples.git
 
+curl -sSL https://goo.gl/Gci9ZX | sudo bash
+
+cd bin
+export PATH=$PATH:$(pwd)
+echo "export PATH=\$PATH:$(pwd)" >> $HOME/.bashrc
+
+sudo chown -R ubuntu:ubuntu $GOROOT
