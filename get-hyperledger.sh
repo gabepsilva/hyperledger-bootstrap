@@ -7,10 +7,12 @@ then
  exit
 fi
 
+set -e
+set -x 
 
-[ -z "$GOROOT" ] && echo '\$GOROOT is not defined. Try to install GO or reload bash.' && exit 
+[ -z "$GOROOT" ] && echo '$GOROOT is not defined. Try to install GO or reload bash.' && exit 
 
-mkdir -p $GOPATH/src/github.com/hyperledger
+mkdir -p $GOPATH/github.com/hyperledger
 cd $GOPATH/src/github.com/hyperledger
 
 git clone	https://gerrit.hyperledger.org/r/p/fabric.git
