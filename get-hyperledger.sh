@@ -15,7 +15,7 @@ set -x
 mkdir -p $GOPATH/github.com/hyperledger
 cd $GOPATH/github.com/hyperledger
 
-git clone	https://gerrit.hyperledger.org/r/p/fabric.git
+git clone https://gerrit.hyperledger.org/r/p/fabric.git
 
 #get samples
 cd fabric 
