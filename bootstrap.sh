@@ -113,23 +113,26 @@ echo ;
 echo ;
 # Install GO
 GO_VER=1.9
+GO_LOC=${HOME}/go${GO_VER}
 GO_URL=https://storage.googleapis.com/golang/go${GO_VER}.linux-amd64.tar.gz
 
-export GOROOT="${HOME}/go${GO_VER}"
-export GOPATH=$GOROOT
+export GOROOT=${HOME}/go
+export GOPATH=${HOME}/gopath
 export PATH=$PATH:$GOROOT/bin
-mkdir -p $GOROOT
+mkdir -p $GO_LOC
+mkdir -p $GOPATH
 
-cat <<EOF >> ${GOROOT}/setenv
+cat <<EOF >> ${HOME}/setenv_hyperledger
 export GOROOT=$GOROOT
 export GOPATH=$GOPATH
 export PATH=\$PATH:$GOROOT/bin
 EOF
 
 
-curl -sL $GO_URL | (cd $GOROOT && tar --strip-components 1 -xz) 
+curl -sL $GO_URL | (cd $GO_LOC && tar --strip-components 1 -xz) 
+ln -s $GO_LOC ${HOME}/go
 
-$GOROOT/bin/go version
+${HOME}/go/bin/go version
 
 echo ;
 echo ;
@@ -153,13 +156,12 @@ curl -sSL https://goo.gl/Gci9ZX | sudo bash
 
 
 export PATH=$PATH:$(pwd)/bin
-echo "export PATH=\$PATH:$(pwd)/bin" >> ${GOROOT}/setenv
+echo "export PATH=\$PATH:$(pwd)/bin" >> ${HOME}/setenv_hyperledger
 	
 sudo chown -R ubuntu:ubuntu $GOROOT
 
-cat ${GOROOT}/setenv >> ${HOME}/.bashrc
-sudo sh -c "cat ${GOROOT}/setenv >> /root/.bashrc"
-
+cat ${HOME}/setenv_hyperledger >> ${HOME}/.bashrc
+sudo sh -c "cat ${HOME}/setenv_hyperledger >> /root/.bashrc"
 
 
 echo ;
